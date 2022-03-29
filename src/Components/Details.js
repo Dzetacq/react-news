@@ -14,7 +14,7 @@ function Details(props) {
     var tags = []
     article.tags.forEach(e => {
 
-        tags.push(<p key={e.id}>{e.title}</p>)
+        tags.push(<p key={e.id}>{e.text}</p>)
     });
     return (
         <div>
@@ -25,8 +25,7 @@ function Details(props) {
             <Link to="/" >
                 <button type='button' onClick={() => { dispatch(deleteArticle(article.id)) }}>Delete</button>
             </Link>
-            <p>{article.subtitle}</p>
-            <p>{ new Date(article.articleDates.publicationDate).toDateString() }</p>
+            <p>{ new Date(article.publishedAt).toDateString() }</p>
             <p>{article.description} </p>
             <p>{article.content} </p>
             {tags}

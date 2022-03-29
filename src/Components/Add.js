@@ -1,20 +1,19 @@
 import React, {useState} from 'react'
 import {WithContext as ReactTags} from 'react-tag-input';
 import {addArticle} from '../slices/articlesSlice'
-import {useDispatch} from 'react-redux'
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux'
 import {selectNews} from '../slices/articlesSlice';
 import Input from './Input'
 
 function Add() {
     const [tags, setTags] = useState([])
     const [title, setTitle] = useState("");
-    const [subtitle, setSubtitle] = useState("");
     const [description, setDescription] = useState("");
     const [content, setContent] = useState("");
     const dispatch = useDispatch();
-    const id = Math.max.apply(Math, useSelector(selectNews).map(a => Number(a.id))) + 1;
-    const articleDates = {"publicationDate": Date.now(), "updateDate": Date.now()}
+    const news = useSelector(selectNews);
+    const id = news.length > 0 ? Math.max.apply(Math, news.map(a => Number(a.id))) + 1 : 1;
+    const publishedAt = Date.now()
     const handleDelete = i => {
         setTags(tags.filter((tag, index) => index !== i));
     };
@@ -22,11 +21,9 @@ function Add() {
         setTags([...tags, tag]);
     };
     return (
-        <form action={'/news/' + (id - 1)}>
+        <form action={'/details/' + (id - 1)}>
             <Input name="title" description="Title" 
                     onChange={(e) => setTitle(e.target.value)}/>
-            <Input name="subtitle" description="Subtitle" 
-                    onChange={(e) => setSubtitle(e.target.value)}/>
             <Input name="description" description="Description" area={true} 
                     onChange={(e) => setDescription(e.target.value)} />
             <Input name="content" description="Content" area={true} 
@@ -38,7 +35,7 @@ function Add() {
             />
             <input type="submit" value="submit" 
                     onClick={() => {dispatch(addArticle({
-                        title, subtitle, description, content, tags, id, articleDates
+                        title, description, content, tags, id, publishedAt
                     }))}}/>
         </form>
     ) 

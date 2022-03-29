@@ -29,7 +29,6 @@ const WeatherItem = (props) => {
     let api = new WeatherApi();
     var date = new Date()
     if (!props.weather.main) {return (<div>Loading</div>)}
-    console.log(props.weather)
     return (
         <div className="card">
             <div>
