@@ -36,7 +36,7 @@ const WeatherItem = (props) => {
                 <Card bg="light" >
                     <Card.Img src={api.getWeatherIcon(props.weather.weather[0].icon)} />
                     <Card.Body>
-                        <Card.Title>{props.weather.main.temp} °C - {props.weather.weather[0].description}</Card.Title>
+                        <Card.Title>{Math.round(props.weather.main.temp)} °C - {props.weather.weather[0].description}</Card.Title>
                         <Card.Text>{props.city} - {date.toLocaleDateString()}</Card.Text>
                         <Card.Text>Humidity: {props.weather.main.humidity}%</Card.Text>
                         <Card.Text>Visibility: {props.weather.visibility > 1000 ? "great" : props.weather.visibility + "m"}</Card.Text>

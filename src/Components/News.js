@@ -9,20 +9,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 const Article = (props) => {
     var link = props.article.id ? "/details/" + props.article.id : "/";
     var title = props.article.title ? props.article.title : "Title missing"
-    var description = props.article.description 
-        ? props.article.description.length > 200 
-            ? props.article.description.substring(0, 200) + "..." 
-            : props.article.description 
+    var excerpt = props.article.excerpt 
+        ? props.article.excerpt.length > 200 
+            ? props.article.excerpt.substring(0, 200) + "..." 
+            : props.article.excerpt 
         : "description missing"
     return (
         <article className="Card"  >
             <div className='shadow'>
                 <Link to={link} >
                     <Card bg="light" >
-                        <Card.Img src={props.article.urlToImage} />
+                        <Card.Img src={props.article.media} alt="Image missing" />
                         <Card.Body>
                             <Card.Title>{title}</Card.Title>
-                            <Card.Text>{description}</Card.Text>
+                            <Card.Text>{excerpt}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Link>
@@ -53,8 +53,8 @@ const NewsArray = (props) => {
 function News(props) {
     var params = useParams();
     var newsData = useSelector(selectNews);
-    var sortedData = [...newsData].sort((a, b) => new Date(b.publishedAt) - 
-                            new Date(a.publishedAt))
+    var sortedData = [...newsData].sort((a, b) => new Date(b.published_date) - 
+                            new Date(a.published_date))
     var page = params.page ? Number(params.page) : 1
     return (
         <div>

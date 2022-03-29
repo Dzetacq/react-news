@@ -40,6 +40,7 @@ export const reloadArticles = () => (dispatch) => {
     var api = new NewsApi()
     var promise = api.getNews();
     promise.then(function(r) {
+            //console.log(r.data.articles[0])
             dispatch(reloadArticlesInternal(articleNormaliser(r.data.articles)))
         }, function() {console.log('api error')}
     );

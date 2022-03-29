@@ -10,8 +10,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 function Details(props) {
     let params = useParams();
     let newsData = useSelector(selectNews)
-    var sortedData = [...newsData].sort((a, b) => new Date(b.publishedAt) - 
-                            new Date(a.publishedAt))
+    var sortedData = [...newsData].sort((a, b) => new Date(b.published_date) - 
+                            new Date(a.published_date))
     let index = sortedData.findIndex(x => x.id === Number(params.id));
     let article = sortedData[index]
     const dispatch = useDispatch();
@@ -23,15 +23,15 @@ function Details(props) {
     article.tags.forEach(t => {
         tags.push(<Badge pill key={t}>{t}</Badge>)
     });
-    let image = article.urlToImage ? <img src={article.urlToImage} alt=""></img> : ''
+    let image = article.media ? <img src={article.media} alt=""></img> : ''
     let returner = Math.ceil((index+1)/10)
-    let redirect = !article.source ? "" : 
-        <a href={article.url}>Read full article on {article.source.name}</a>
+    let redirect = !article.link ? "" : 
+        <a href={article.link}>Read full article on {article.rights}</a>
     return (
         <article className='article'>
             {image}
             <h2>{article.title}</h2>
-            <Figure.Caption>{ new Date(article.publishedAt).toDateString() }</Figure.Caption>
+            <Figure.Caption>{ new Date(article.published_date).toDateString() }</Figure.Caption>
             <ButtonGroup>
                 <LinkContainer to={"/edit/" + article.id} >
                     <Button>Edit</Button>
@@ -40,7 +40,7 @@ function Details(props) {
                      <Button variant="danger" onClick={() => { dispatch(deleteArticle(article.id)) }}>Delete</Button>
                 </LinkContainer>
             </ButtonGroup>
-            <p>{article.content} </p>
+            <p>{article.summary} </p>
             {redirect}
             <div className='tags'>
                 {tags}

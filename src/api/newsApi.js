@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {newsKey} from './apiKeys'
-var url = 'https://newsapi.org/v2/top-headlines?country=be&apiKey=' + newsKey;
+import {newscatcherKey} from './apiKeys'
+var url = "https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=30"
 
 class NewsApi {
     getNews() {
-        return axios.get(url);
+        return axios.get(url, {headers: {'x-api-key' : newscatcherKey}});
     }
 }
 

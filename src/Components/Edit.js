@@ -11,15 +11,15 @@ function Edit(props) {
     const article = useSelector(selectNews).find(x => x.id === Number(params.id))
     const [tags, setTags] = useState(article.tags)
     const [title, setTitle] = useState(article.title);
-    const [description, setDescription] = useState(article.description);
-    const [urlToImage, setImage] = useState(article.urlToImage);
-    const [content, setContent] = useState(article.content);
+    const [excerpt, setExcerpt] = useState(article.excerpt);
+    const [media, setImage] = useState(article.media);
+    const [summary, setSummary] = useState(article.summary);
     const dispatch = useDispatch();
     const id = article.id;
-    const publishedAt = article.publishedAt
+    const published_date = article.published_date
     const submitForm = e => {
         dispatch(editArticle({
-            title, description, content, tags, id, publishedAt, urlToImage
+            title, excerpt, summary, tags, id, published_date, media
         }))
     }
     const tagKeyDown = e => {
@@ -49,17 +49,17 @@ function Edit(props) {
                 <Form.Label>Article title:</Form.Label>
                 <Form.Control value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} required />
             </Form.Group>
-            <Form.Group controlId="description">
+            <Form.Group controlId="excerpt">
                 <Form.Label>Short description:</Form.Label>
-                <Form.Control value={description} as="textarea" placeholder="Description" onChange={(e) => setDescription(e.target.value)} required />
+                <Form.Control value={excerpt} as="textarea" placeholder="excerpt" onChange={(e) => setExcerpt(e.target.value)} required />
             </Form.Group>
-            <Form.Group controlId="content">
+            <Form.Group controlId="summary">
                 <Form.Label>Full article content:</Form.Label>
-                <Form.Control value={content} as="textarea" onChange={(e) => setContent(e.target.value)} required />
+                <Form.Control value={summary} as="textarea" onChange={(e) => setSummary(e.target.value)} required />
             </Form.Group>
             <Form.Group>
                 <Form.Label>URL to image:</Form.Label>
-                <Form.Control value={urlToImage} placeholder="Optional" onChange={(e) => setImage(e.target.value)} />
+                <Form.Control value={media} placeholder="Optional" onChange={(e) => setImage(e.target.value)} />
             </Form.Group>
             <Form.Group controlId="tags">
                 <Form.Label>Tags:</Form.Label>
