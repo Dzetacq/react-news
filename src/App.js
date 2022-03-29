@@ -4,7 +4,7 @@ import Details from './Components/Details'
 import Add from './Components/Add'
 import Edit from './Components/Edit'
 import About from './Components/About'
-import { Route, Routes, BrowserRouter, NavLink } from 'react-router-dom'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import './styles/News.css';

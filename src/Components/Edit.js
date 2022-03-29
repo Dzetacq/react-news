@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {WithContext as ReactTags } from 'react-tag-input';
 import {editArticle} from '../slices/articlesSlice'
 import {useDispatch} from 'react-redux'
 import {useSelector} from 'react-redux';
@@ -74,25 +73,3 @@ function Edit(props) {
 }
 
 export default Edit;
-
-function temp() {
-    /*return(
-        <form action={'/details/' + id}>
-          <Input name="title" description="Title" value={title}
-                  onChange={(e) => setTitle(e.target.value)}/>
-          <Input name="description" description="Description" area={true}  value={description}
-                  onChange={(e) => setDescription(e.target.value)} />
-          <Input name="content" description="Content" area={true}  value={content}
-                  onChange={(e) => setContent(e.target.value)} />
-          <ReactTags 
-                  tags={tags}
-                  handleDelete={handleDelete} 
-                  handleAddition={handleAddition}
-          />
-          <input type="submit" value="submit" 
-                  onClick={() => {dispatch(editArticle({
-                      title, description, content, tags, id, publishedAt
-                  }))}}/>
-      </form>
-    )*/
-}
