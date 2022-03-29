@@ -8,7 +8,7 @@ import { Badge, Button, Form } from 'react-bootstrap';
 
 function Edit(props) {
     const params = useParams();
-    const article = useSelector(selectNews).find(x => x.id == params.id)
+    const article = useSelector(selectNews).find(x => x.id === Number(params.id))
     const [tags, setTags] = useState(article.tags)
     const [title, setTitle] = useState(article.title);
     const [description, setDescription] = useState(article.description);

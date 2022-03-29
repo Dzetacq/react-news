@@ -11,10 +11,10 @@ export const articlesSlice = createSlice({
             state.value.push(action.payload)
         }, 
         editArticle: (state, action) => {
-            state.value[state.value.findIndex(o => o.id == action.payload.id)] = action.payload;
+            state.value[state.value.findIndex(o => o.id === action.payload.id)] = action.payload;
         },
         deleteArticle: (state, action) => {
-            state.value.splice(state.value.findIndex(o => o.id == action.payload), 1);
+            state.value.splice(state.value.findIndex(o => o.id === action.payload), 1);
         },
         reloadArticlesInternal: (state, action) => {
             state.value = (action.payload);

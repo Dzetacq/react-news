@@ -12,7 +12,7 @@ function Details(props) {
     let newsData = useSelector(selectNews)
     var sortedData = [...newsData].sort((a, b) => new Date(b.publishedAt) - 
                             new Date(a.publishedAt))
-    let index = sortedData.findIndex(x => x.id == params.id);
+    let index = sortedData.findIndex(x => x.id === Number(params.id));
     let article = sortedData[index]
     const dispatch = useDispatch();
     
