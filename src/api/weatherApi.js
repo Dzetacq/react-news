@@ -11,7 +11,7 @@ class WeatherApi {
         return axios.get(url + "?lat=" + lat + "&lon=" + lon + "&appid=" + weatherKey + "&units=" + units)
     }
     getWeatherIcon(iconCode) {
-        return <img src={iconUrl + iconCode + '@2x.png'} alt=""></img>
+        return (iconUrl + iconCode + '@2x.png')
     }
 }
 

@@ -4,28 +4,45 @@ import Details from './Components/Details'
 import Add from './Components/Add'
 import Edit from './Components/Edit'
 import About from './Components/About'
-import { Route, Switch, BrowserRouter, NavLink } from 'react-router-dom'
+import { Route, Routes, BrowserRouter, NavLink } from 'react-router-dom'
+import {LinkContainer} from 'react-router-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import './styles/News.css';
 
 const Header = () => (
-  <header className="App-header">
-    <ul className="menu">
-      <li><NavLink to="/" exact activeClassName='active'>Home</NavLink></li>
-      <li><NavLink to="/add" activeClassName='active'>Add</NavLink></li>
-      <li><NavLink to="/about" activeClassName='active'>About</NavLink></li>
-    </ul>
-  </header>
+  <Navbar className='App-header'>
+    <Container>
+      <LinkContainer to="/">
+        <Navbar.Brand href="/">React-News</Navbar.Brand>
+      </LinkContainer>
+      <Navbar.Toggle />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className='me-auto'>
+          <LinkContainer to="/">
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/add">
+            <Nav.Link>Add</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/about">
+            <Nav.Link>About</Nav.Link>
+          </LinkContainer>
+        </Nav>
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
 )
 
 const Main = () => (
   <main className="news">
-    <Switch>
-      <Route exact path='/' component={News} /> 
-      <Route exact path='/news/:page' component={News} /> 
-      <Route path='/details/:id' component={Details} /> 
-      <Route path='/add' component={Add} /> 
-      <Route path='/edit/:id' component={Edit} /> 
-      <Route path='/about' component={About} /> 
-    </Switch>
+    <Routes>
+      <Route path='/' element={<News/>} /> 
+      <Route exact path='/news/:page' element={<News/>} /> 
+      <Route path='/details/:id' element={<Details/>} /> 
+      <Route path='/add' element={<Add/>} /> 
+      <Route path='/edit/:id' element={<Edit/>} /> 
+      <Route path='/about' element={<About/>} /> 
+    </Routes>
   </main>
   
 )

@@ -1,0 +1,32 @@
+.Card {
+    width: 45%;
+    margin-bottom: 2%;
+}
+
+.Card * {
+    text-decoration: none;
+    color: black;
+}
+
+.App-header>.container {
+    max-width: none;
+    margin-left: 5vh;
+    padding-left: 5px;
+}
+
+.Wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-bottom: 5vh;
+}
+
+.news {
+    margin: 5vw;
+}
+
+.Buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+}

@@ -1,0 +1,16 @@
+.Weather-card {
+    width: 45%;
+    margin-bottom: 2%;
+}
+
+.Weather-card * {
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.Weather-card img {
+    width: 50%;
+    margin: auto;
+}
