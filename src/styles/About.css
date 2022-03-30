@@ -1,6 +1,13 @@
 .Weather-card {
-    width: 45%;
+    width: 60%;
+    max-width: 400px;
     margin-bottom: 2%;
+}
+
+@media (max-width: 500px) {
+    .Weather-card {
+        width: auto;
+    }
 }
 
 .Weather-card * {
@@ -12,5 +19,6 @@
 
 .Weather-card img {
     width: 50%;
+    max-width: 150px;
     margin: auto;
 }

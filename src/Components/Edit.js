@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux'
 import {useSelector} from 'react-redux';
 import {selectNews} from '../slices/articlesSlice';
 import { useParams } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import { Badge, Button, Form } from 'react-bootstrap';
 
 function Edit(props) {
@@ -17,12 +18,13 @@ function Edit(props) {
     const dispatch = useDispatch();
     const id = article.id;
     const published_date = article.published_date
+    const [navigate, setNavigate] = useState(false);
     const submitForm = e => {
         e.preventDefault();
         dispatch(editArticle({
             title, excerpt, summary, tags, id, published_date, media
         }))
-        document.getElementById("form").submit();
+        setNavigate(true);
     }
     const tagKeyDown = e => {
         if (e.keyCode === 13 || e.keyCode === 188) {
@@ -46,7 +48,8 @@ function Edit(props) {
         </Badge>
     )
     return (
-        <Form id='form' onSubmit={(e) => submitForm(e)} action={"/details/" + id}>
+        <div>
+        <Form id='form' onSubmit={(e) => submitForm(e)}>
             <Form.Group controlId="title">
                 <Form.Label>Article title:</Form.Label>
                 <Form.Control value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} required />
@@ -70,7 +73,10 @@ function Edit(props) {
             </Form.Group><br/>
             <Button type="submit">Submit</Button>
         </Form>
-      
+        {navigate && (
+          <Navigate to={'/ebert/details/' + id}/>
+        )}
+      </div>
   ) 
 }
 

@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const Article = (props) => {
-    var link = props.article.id ? "/details/" + props.article.id : "/";
+    var link = props.article.id ? "/ebert/details/" + props.article.id : "/ebert/";
     var title = props.article.title ? props.article.title : "Title missing"
     var excerpt = props.article.excerpt 
         ? props.article.excerpt.length > 200 
@@ -61,7 +61,7 @@ function News(props) {
             <div className='Wrapper'>
                 <NewsArray page={page} data={sortedData} />
             </div>
-            <Buttons key={-1} page={page} length={sortedData.length}/>
+            <Buttons key={-2} page={page} length={sortedData.length}/>
         </div>
     );
 }
@@ -70,17 +70,17 @@ const Buttons = (props) => {
     const dispatch = useDispatch();
     return (
         <div className="Buttons">
-            <LinkContainer to={"/news/" + (props.page - 1)}>
+            <LinkContainer to={"/ebert/news/" + (props.page - 1)}>
                 <Button disabled={props.page < 2} size="lg" >
                     {"< Previous"}
                 </Button>
             </LinkContainer>
-            <LinkContainer to="/" >
+            <LinkContainer to="/ebert/" >
                 <Button onClick={() => {dispatch(reloadArticles())}} size="lg" variant="warning" >
                     Load new news
                 </Button>
             </LinkContainer>
-            <LinkContainer to={"/news/" + (props.page + 1)}>
+            <LinkContainer to={"/ebert/news/" + (props.page + 1)}>
                 <Button disabled={props.length <= props.page * 10} size="lg" >
                     {"Next >"}
                 </Button>

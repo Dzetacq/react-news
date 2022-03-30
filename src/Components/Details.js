@@ -33,10 +33,10 @@ function Details(props) {
             <h2>{article.title}</h2>
             <Figure.Caption>{ new Date(article.published_date).toDateString() }</Figure.Caption>
             <ButtonGroup>
-                <LinkContainer to={"/edit/" + article.id} >
+                <LinkContainer to={"/ebert/edit/" + article.id} >
                     <Button>Edit</Button>
                 </LinkContainer>
-                <LinkContainer to="/" >
+                <LinkContainer to="/ebert/" >
                      <Button variant="danger" onClick={() => { dispatch(deleteArticle(article.id)) }}>Delete</Button>
                 </LinkContainer>
             </ButtonGroup>
@@ -45,7 +45,7 @@ function Details(props) {
             <div className='tags'>
                 {tags}
             </div>
-            <Link to={"/news/" + returner} >Back</Link>
+            <Link to={"/ebert/news/" + returner} >Back</Link>
         </article>
     );
 }

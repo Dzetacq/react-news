@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {addArticle} from '../slices/articlesSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {selectNews} from '../slices/articlesSlice';
+import { Navigate } from 'react-router';
 import '../styles/Forms.css'
 import { Badge, Button, Form } from 'react-bootstrap';
 
@@ -15,12 +16,13 @@ function Add() {
     const news = useSelector(selectNews);
     const id = news.length > 0 ? Math.max.apply(Math, news.map(a => Number(a.id))) + 1 : 1;
     const published_date = Date.now()
+    const [navigate, setNavigate] = useState(false);
     const submitForm = e => {
         e.preventDefault();
         dispatch(addArticle({
             title, excerpt, summary, tags, id, published_date, media
         }))
-        document.getElementById("form").submit();
+        setNavigate(true);
     }
     const tagKeyDown = e => {
         if (e.keyCode === 13 || e.keyCode === 188) {
@@ -30,7 +32,6 @@ function Add() {
                 setTags([...tags, value]);
                 e.target.value = "";
             }
-            document.getElementById("form").submit();
         }
     }
     const deleteTag = e => {
@@ -45,7 +46,8 @@ function Add() {
         </Badge>
     )
     return (
-        <Form id='form' onSubmit={(e) => submitForm(e)} action={"/details/" + id}>
+        <div>
+        <Form id='form' onSubmit={(e) => submitForm(e)}>
             <Form.Group controlId="title">
                 <Form.Label>Article title:</Form.Label>
                 <Form.Control placeholder="Title" onChange={(e) => setTitle(e.target.value)} required />
@@ -69,7 +71,10 @@ function Add() {
             </Form.Group><br/>
             <Button type="submit">Submit</Button>
         </Form>
-            
+        {navigate && (
+          <Navigate to={'/ebert/details/' + id}/>
+        )}
+        </div>
     ) 
 }
 
