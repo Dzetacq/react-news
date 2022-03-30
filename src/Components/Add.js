@@ -16,9 +16,11 @@ function Add() {
     const id = news.length > 0 ? Math.max.apply(Math, news.map(a => Number(a.id))) + 1 : 1;
     const published_date = Date.now()
     const submitForm = e => {
+        e.preventDefault();
         dispatch(addArticle({
             title, excerpt, summary, tags, id, published_date, media
         }))
+        document.getElementById("form").submit();
     }
     const tagKeyDown = e => {
         if (e.keyCode === 13 || e.keyCode === 188) {
@@ -28,6 +30,7 @@ function Add() {
                 setTags([...tags, value]);
                 e.target.value = "";
             }
+            document.getElementById("form").submit();
         }
     }
     const deleteTag = e => {
@@ -42,7 +45,7 @@ function Add() {
         </Badge>
     )
     return (
-        <Form onSubmit={(e) => submitForm(e)} action={'/details/' + (id - 1)}>
+        <Form id='form' onSubmit={(e) => submitForm(e)} action={"/details/" + id}>
             <Form.Group controlId="title">
                 <Form.Label>Article title:</Form.Label>
                 <Form.Control placeholder="Title" onChange={(e) => setTitle(e.target.value)} required />

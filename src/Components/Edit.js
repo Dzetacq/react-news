@@ -18,9 +18,11 @@ function Edit(props) {
     const id = article.id;
     const published_date = article.published_date
     const submitForm = e => {
+        e.preventDefault();
         dispatch(editArticle({
             title, excerpt, summary, tags, id, published_date, media
         }))
+        document.getElementById("form").submit();
     }
     const tagKeyDown = e => {
         if (e.keyCode === 13 || e.keyCode === 188) {
@@ -44,7 +46,7 @@ function Edit(props) {
         </Badge>
     )
     return (
-        <Form onSubmit={(e) => submitForm(e)} action={'/details/' + id}>
+        <Form id='form' onSubmit={(e) => submitForm(e)} action={"/details/" + id}>
             <Form.Group controlId="title">
                 <Form.Label>Article title:</Form.Label>
                 <Form.Control value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} required />
