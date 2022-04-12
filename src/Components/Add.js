@@ -46,7 +46,7 @@ function Add() {
         </Badge>
     )
     return (
-        <div>
+        <div className='Form'>
         <Form id='form' onSubmit={(e) => submitForm(e)}>
             <Form.Group controlId="title">
                 <Form.Label>Article title:</Form.Label>
@@ -72,7 +72,7 @@ function Add() {
             <Button type="submit">Submit</Button>
         </Form>
         {navigate && (
-          <Navigate to={'/ebert/details/' + id}/>
+          <Navigate to={'/ebert/details/' + (id - 1)}/>
         )}
         </div>
     ) 

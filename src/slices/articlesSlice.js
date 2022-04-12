@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import NewsApi from '../api/newsApi'
 
 export const articlesSlice = createSlice({
@@ -23,15 +23,11 @@ export const articlesSlice = createSlice({
 })
 
 const articleNormaliser = (articles) =>{
-    var id = 1
-    var newArticles = []
-    articles.forEach(a => {
-        let article = a
-        article.tags = []
-        article.id = id++
-        newArticles.push(article)
+    return articles.map((a, i) => {
+        a.id = i + 1;
+        a.tags = [];
+        return a;
     })
-    return newArticles
 }
 
 export const { addArticle, editArticle, deleteArticle, reloadArticlesInternal } = articlesSlice.actions
@@ -40,7 +36,6 @@ export const reloadArticles = () => (dispatch) => {
     var api = new NewsApi()
     var promise = api.getNews();
     promise.then(function(r) {
-            //console.log(r.data.articles[0])
             dispatch(reloadArticlesInternal(articleNormaliser(r.data.articles)))
         }, function() {console.log('api error')}
     );

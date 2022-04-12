@@ -50,7 +50,7 @@ const NewsArray = (props) => {
     return output;
 } 
 
-function News(props) {
+function News() {
     var params = useParams();
     var newsData = useSelector(selectNews);
     var sortedData = [...newsData].sort((a, b) => new Date(b.published_date) - 
@@ -76,7 +76,7 @@ const Buttons = (props) => {
                 </Button>
             </LinkContainer>
             <LinkContainer to="/ebert/" >
-                <Button onClick={() => {dispatch(reloadArticles())}} size="lg" variant="warning" >
+                <Button onClick={() => {dispatch(reloadArticles())}} size="lg" variant="warning" className='Reload' >
                     Load new news
                 </Button>
             </LinkContainer>

@@ -48,7 +48,7 @@ function Edit(props) {
         </Badge>
     )
     return (
-        <div>
+        <div className='Form'>
         <Form id='form' onSubmit={(e) => submitForm(e)}>
             <Form.Group controlId="title">
                 <Form.Label>Article title:</Form.Label>
